@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О нас — 314-й Мобильный корпус поддержки</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Все ссылки открываются в ТОЙ ЖЕ вкладке (target="_top" нужен для Google Sites, т.к. код живёт внутри iframe) -->
+  <base target="_top">
+
+  <style>
+    :root {
+      --orange: #d46820;
+      --orange-bright: #f07a24;
+      --black: #070707;
+      --white: #f4f4f4;
+      --line: rgba(212, 104, 32, .35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Barlow Condensed", Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ---------- BACKGROUND ---------- */
+    .drive-background {
+      position: fixed; inset: 0; z-index: -5;
+      background-image: url("https://drive.google.com/thumbnail?id=134S6dLPdXqHJGjd4RAVAvO2tayTSQELQ&sz=w4000");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform: scale(1.02);
+    }
+
+    .background-overlay {
+      position: fixed; inset: 0; z-index: -4; pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.76) 35%, rgba(0,0,0,.52) 70%, rgba(0,0,0,.72) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.52) 0%, rgba(0,0,0,.30) 45%, rgba(0,0,0,.90) 100%);
+    }
+
+    .background-glow {
+      position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      background:
+        radial-gradient(circle at 75% 40%, rgba(212,104,32,.15), transparent 35%),
+        radial-gradient(circle at 15% 70%, rgba(212,104,32,.07), transparent 30%);
+    }
+
+    .background-grid {
+      position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 70px 70px;
+    }
+
+    .top-line {
+      height: 3px;
+      background: var(--orange);
+      box-shadow: 0 0 18px rgba(212,104,32,.65);
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      width: min(1280px, calc(100% - 50px));
+      margin: 0 auto;
+      padding: 27px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 15px; }
+
+    .header-mark {
+      width: 38px; height: 38px;
+      border: 1px solid var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange);
+      font-size: 14px; font-weight: 600;
+      box-shadow: inset 0 0 15px rgba(212,104,32,.08);
+    }
+
+    .header-title {
+      font-size: 15px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .header-subtitle {
+      margin-top: 4px; color: #777;
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    }
+
+    .header-buttons { display: flex; gap: 10px; }
+
+    .discord {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 11px 17px;
+      border: 1px solid rgba(255,255,255,.15);
+      color: #aaa; text-decoration: none;
+      font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+      transition: .22s ease;
+    }
+
+    .discord:hover {
+      border-color: var(--orange);
+      color: var(--orange-bright);
+      background: rgba(212,104,32,.04);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      width: min(1100px, calc(100% - 50px));
+      margin: 0 auto;
+      padding: 110px 0 20px;
+      animation: fadeUp .8s ease forwards;
+    }
+
+    .eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 25px;
+      color: var(--orange-bright);
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 40px; height: 2px;
+      background: var(--orange);
+      box-shadow: 0 0 10px rgba(212,104,32,.8);
+    }
+
+    h1 {
+      font-size: clamp(64px, 12vw, 150px);
+      line-height: .85;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-shadow: 0 5px 35px rgba(0,0,0,.8);
+    }
+
+    h1 span { color: var(--orange); }
+
+    .hero-description {
+      max-width: 680px;
+      margin-top: 30px;
+      color: #d2d2d2;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .hero-line {
+      width: 110px; height: 2px; margin-top: 32px;
+      background: var(--orange);
+      box-shadow: 0 0 12px rgba(212,104,32,.45);
+    }
+
+    /* ---------- CONTENT ---------- */
+    .content {
+      width: min(1100px, calc(100% - 50px));
+      margin: 0 auto;
+      padding-bottom: 100px;
+    }
+
+    .section { margin-top: 90px; }
+
+    .section-header {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 34px;
+    }
+
+    .section-number {
+      color: var(--orange);
+      font-size: 56px; line-height: .8; font-weight: 500;
+      letter-spacing: -1px; flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 38px; line-height: 1; font-weight: 500;
+      text-transform: uppercase; letter-spacing: -.5px;
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--line), transparent);
+    }
+
+    /* ---------- DOC CARDS ---------- */
+    .doc-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .doc-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      padding: 62px 30px 32px;
+      text-decoration: none;
+      color: inherit;
+      background: linear-gradient(135deg, rgba(212,104,32,.08), rgba(0,0,0,.72) 48%);
+      border: 1px solid rgba(212,104,32,.28);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      transition: .22s ease;
+    }
+
+    /* верхняя оранжевая линия */
+    .doc-item::before {
+      content: "";
+      position: absolute; left: 0; top: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--orange), transparent 60%);
+      opacity: .7;
+      transition: .22s ease;
+    }
+
+    .doc-item:hover {
+      border-color: rgba(212,104,32,.6);
+      background: linear-gradient(135deg, rgba(212,104,32,.14), rgba(0,0,0,.72) 55%);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.4), 0 0 25px rgba(212,104,32,.08);
+    }
+
+    .doc-item:hover::before { opacity: 1; }
+
+    .doc-index {
+      position: absolute; left: 30px; top: 24px;
+      color: rgba(255,255,255,.22);
+      font-family: "Courier New", monospace;
+      font-size: 11px; letter-spacing: 2px;
+    }
+
+    .doc-status {
+      position: absolute; right: 20px; top: 18px;
+      padding: 5px 11px;
+      border: 1px solid rgba(212,104,32,.55);
+      background: rgba(212,104,32,.08);
+      color: var(--orange-bright);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+
+    .doc-status::before {
+      content: "";
+      display: inline-block;
+      width: 6px; height: 6px; margin-right: 8px;
+      border-radius: 50%;
+      background: var(--orange-bright);
+      box-shadow: 0 0 8px var(--orange-bright);
+      vertical-align: 1px;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    .doc-name {
+      font-size: 30px; line-height: 1.05; font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .doc-line {
+      width: 50px; height: 2px; margin-top: 20px;
+      background: var(--orange);
+      transition: .22s ease;
+    }
+
+    .doc-item:hover .doc-line { width: 90px; }
+
+    .doc-description {
+      margin-top: 16px;
+      color: #a0a0a0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px; line-height: 1.6;
+    }
+
+    .doc-open {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--orange);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      transition: .22s ease;
+    }
+
+    .doc-item:hover .doc-open {
+      color: var(--orange-bright);
+      letter-spacing: 3px;
+    }
+
+    /* ---------- SUGGESTION BUTTON ---------- */
+    .suggest-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 60px;
+    }
+
+    .suggest-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 260px;
+      padding: 17px 32px;
+      border: none; cursor: pointer;
+      background: var(--orange);
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      clip-path: polygon(0 0, 94% 0, 100% 25%, 100% 100%, 6% 100%, 0 75%);
+      box-shadow: 0 0 25px rgba(212,104,32,.16);
+      transition: .22s ease;
+    }
+
+    .suggest-button:hover {
+      background: var(--orange-bright);
+      transform: translateY(-3px);
+    }
+
+    /* ---------- MODAL ---------- */
+    .modal {
+      position: fixed; inset: 0; z-index: 100;
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(6px);
+      overflow-y: auto;
+    }
+
+    .modal.open { display: flex; animation: fadeUp .3s ease forwards; }
+
+    .modal-box {
+      position: relative;
+      width: min(620px, 100%);
+      margin: auto;
+      padding: 40px 38px 34px;
+      background: rgba(8,8,8,.96);
+      border-left: 3px solid var(--orange);
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-right: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      box-shadow: 0 25px 60px rgba(0,0,0,.6);
+    }
+
+    .modal-box::after {
+      content: "";
+      position: absolute; left: -3px; top: -1px;
+      width: 135px; height: 2px;
+      background: var(--orange);
+      box-shadow: 0 0 8px rgba(212,104,32,.35);
+    }
+
+    .modal-close {
+      position: absolute; right: 16px; top: 12px;
+      background: none; border: none; cursor: pointer;
+      color: #777; font-size: 28px; line-height: 1;
+      transition: .2s ease;
+    }
+
+    .modal-close:hover { color: var(--orange-bright); }
+
+    .modal-eyebrow {
+      color: var(--orange-bright);
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    }
+
+    .modal-title {
+      margin: 8px 0 26px;
+      font-size: 36px; font-weight: 600; line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    .field label {
+      display: flex; justify-content: space-between;
+      margin-bottom: 8px;
+      color: #999;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .field label em { font-style: normal; color: #666; }
+    .field label .counter.over { color: #e04a3a; }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 13px 15px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: .2s ease;
+    }
+
+    .field textarea { min-height: 150px; resize: vertical; line-height: 1.5; }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--orange);
+      background: rgba(212,104,32,.05);
+    }
+
+    .form-status {
+      min-height: 20px;
+      margin-bottom: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    .form-status.error { color: #e04a3a; }
+    .form-status.ok { color: #5fcf7a; }
+
+    .submit-button {
+      width: 100%;
+      padding: 16px;
+      border: none; cursor: pointer;
+      background: var(--orange);
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      clip-path: polygon(0 0, 97% 0, 100% 25%, 100% 100%, 3% 100%, 0 75%);
+      transition: .22s ease;
+    }
+
+    .submit-button:hover:not(:disabled) { background: var(--orange-bright); }
+    .submit-button:disabled { opacity: .5; cursor: not-allowed; }
+
+    @media (max-width: 600px) {
+      .suggest-button { width: 100%; }
+      .modal-box { padding: 36px 22px 26px; }
+      .modal-title { font-size: 30px; }
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 20px;
+      text-align: center;
+      color: #666;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    footer span { color: var(--orange); }
+
+    /* ---------- ANIMATION ---------- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: .35; }
+    }
+
+    /* ---------- TABLET ---------- */
+    @media (max-width: 900px) {
+      header { width: calc(100% - 30px); }
+      .hero, .content { width: calc(100% - 30px); }
+      .hero { padding-top: 80px; }
+      .section-number { font-size: 48px; }
+      .section-title { font-size: 32px; }
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 600px) {
+      header { width: calc(100% - 25px); }
+      .hero, .content { width: calc(100% - 25px); }
+      .header-subtitle { display: none; }
+      .discord { padding: 9px 11px; font-size: 9px; }
+      .hero { padding-top: 60px; }
+      h1 { letter-spacing: -2px; }
+      .hero-description { font-size: 15px; }
+      .section { margin-top: 70px; }
+      .section-header { gap: 13px; margin-bottom: 27px; }
+      .section-number { font-size: 42px; }
+      .section-title { font-size: 26px; }
+      .section-line { display: none; }
+      .doc-list { grid-template-columns: 1fr; }
+      .doc-item { min-height: auto; padding: 60px 23px 27px; }
+      .doc-index { left: 23px; }
+      .doc-name { font-size: 26px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="drive-background"></div>
+  <div class="background-overlay"></div>
+  <div class="background-glow"></div>
+  <div class="background-grid"></div>
+
+  <div class="top-line"></div>
+
+  <header>
+    <div class="header-left">
+      <div class="header-mark">314</div>
+      <div>
+        <div class="header-title">Великая армия Республики</div>
+        <div class="header-subtitle">Мобильный корпус поддержки</div>
+      </div>
+    </div>
+
+    <div class="header-buttons">
+      <a class="discord" href="https://discord.gg/5JV7YPKyBK">Discord-коммуникатор</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="eyebrow">314TH MOBILE SUPPORT CORPS</div>
+
+      <h1>О <span>нас</span></h1>
+
+      <p class="hero-description">
+        Здесь собрана вся документация 314-го Мобильного корпуса поддержки:
+        история, структура, специализации и принципы ведения боевых действий.
+      </p>
+
+      <div class="hero-line"></div>
+    </section>
+
+    <div class="content">
+
+      <!-- ДОКУМЕНТАЦИЯ -->
+      <section class="section">
+
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <div class="section-title">Вся документация</div>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="doc-list">
+
+          <a class="doc-item" target="_top"
+             href="https://sites.google.com/view/genetic314th/%D0%BE-%D0%BD%D0%B0%D1%81/%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D0%BE%D0%B4%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F">
+            <div class="doc-index">DOC-01</div>
+            <div class="doc-status">Status: В разработке</div>
+            <div class="doc-name">История подразделения</div>
+            <div class="doc-line"></div>
+            <div class="doc-description">
+              История создания, формирования и развития подразделения, включая ключевые события и этапы его службы.
+            </div>
+            <div class="doc-open">Открыть →</div>
+          </a>
+
+          <a class="doc-item" target="_top"
+             href="https://sites.google.com/view/genetic314th/%D0%BE-%D0%BD%D0%B0%D1%81/%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BF%D0%BE%D0%B4%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F">
+            <div class="doc-index">DOC-02</div>
+            <div class="doc-status">Status: В разработке</div>
+            <div class="doc-name">Структура подразделения</div>
+            <div class="doc-line"></div>
+            <div class="doc-description">
+              Состав подразделения, система управления, должности и распределение личного состава.
+            </div>
+            <div class="doc-open">Открыть →</div>
+          </a>
+
+          <a class="doc-item" target="_top"
+             href="https://sites.google.com/view/genetic314th/%D0%BE-%D0%BD%D0%B0%D1%81/%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8">
+            <div class="doc-index">DOC-03</div>
+            <div class="doc-status">Status: В разработке</div>
+            <div class="doc-name">Специализации</div>
+            <div class="doc-line"></div>
+            <div class="doc-description">
+              Основные направления подготовки и специализации военнослужащих подразделения.
+            </div>
+            <div class="doc-open">Открыть →</div>
+          </a>
+
+          <a class="doc-item" target="_top"
+             href="https://sites.google.com/view/genetic314th/%D0%BE-%D0%BD%D0%B0%D1%81/%D1%82%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B8-%D0%B1%D0%BE%D1%8F">
+            <div class="doc-index">DOC-04</div>
+            <div class="doc-status">Status: В разработке</div>
+            <div class="doc-name">Тактики боя</div>
+            <div class="doc-line"></div>
+            <div class="doc-description">
+              Основные принципы ведения боевых действий, взаимодействия и применения подразделения в различных условиях.
+            </div>
+            <div class="doc-open">Открыть →</div>
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- ПРЕДЛОЖЕНИЕ -->
+      <div class="suggest-wrapper">
+        <button type="button" class="suggest-button" id="openSuggest">Предложение</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    314-й Мобильный корпус поддержки
+    <span>•</span>
+    Великая армия Республики
+  </footer>
+
+
+  <!-- ===================== MODAL ===================== -->
+  <div class="modal" id="suggestModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-labelledby="suggestTitle">
+
+      <button type="button" class="modal-close" id="closeSuggest" aria-label="Закрыть">&times;</button>
+
+      <div class="modal-eyebrow">314TH MOBILE SUPPORT CORPS</div>
+      <div class="modal-title" id="suggestTitle">Предложение</div>
+
+      <div class="field">
+        <label for="fCallsign">Позывной</label>
+        <input type="text" id="fCallsign" maxlength="60" autocomplete="off" placeholder="Например: PANDORA">
+      </div>
+
+      <div class="field">
+        <label for="fTopic">Суть</label>
+        <input type="text" id="fTopic" maxlength="200" autocomplete="off" placeholder="Кратко: о чём предложение">
+      </div>
+
+      <div class="field">
+        <label for="fText">
+          <span>Предложение</span>
+          <span class="counter" id="wordCounter">0 / 200 слов</span>
+        </label>
+        <textarea id="fText" placeholder="Опишите ваше предложение (до 200 слов)"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="fLink">Ссылка на документ <em>(необязательно)</em></label>
+        <input type="url" id="fLink" autocomplete="off" placeholder="https://docs.google.com/...">
+      </div>
+
+      <div class="form-status" id="formStatus"></div>
+
+      <button type="button" class="submit-button" id="submitSuggest">Отправить</button>
+
+    </div>
+  </div>
+
+
+  <script>
+    (function () {
+
+      var WEBHOOK_URL = "https://discord.com/api/webhooks/1554587716694446111/lSkUtEO8d7VlJgHWS3DH4ZSqMEkm9JzfzFKaTwypnNHbOBRjhTL3g33EZaxXCcGIk7Qi";
+      var MAX_WORDS = 200;
+      var COOLDOWN_MS = 60000;
+
+      var modal   = document.getElementById("suggestModal");
+      var openBtn = document.getElementById("openSuggest");
+      var closeBtn = document.getElementById("closeSuggest");
+      var sendBtn = document.getElementById("submitSuggest");
+      var status  = document.getElementById("formStatus");
+      var counter = document.getElementById("wordCounter");
+
+      var fCallsign = document.getElementById("fCallsign");
+      var fTopic = document.getElementById("fTopic");
+      var fText = document.getElementById("fText");
+      var fLink = document.getElementById("fLink");
+
+      function countWords(s) {
+        s = s.trim();
+        return s ? s.split(/\s+/).length : 0;
+      }
+
+      function setStatus(msg, type) {
+        status.textContent = msg || "";
+        status.className = "form-status" + (type ? " " + type : "");
+      }
+
+      function openModal() {
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      fText.addEventListener("input", function () {
+        var n = countWords(fText.value);
+        counter.textContent = n + " / " + MAX_WORDS + " слов";
+        counter.className = "counter" + (n > MAX_WORDS ? " over" : "");
+      });
+
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+
+      sendBtn.addEventListener("click", function () {
+
+        var callsign = fCallsign.value.trim();
+        var topic = fTopic.value.trim();
+        var text = fText.value.trim();
+        var link = fLink.value.trim();
+
+        if (!callsign || !topic || !text) {
+          setStatus("Заполните позывной, суть и текст предложения.", "error");
+          return;
+        }
+
+        if (countWords(text) > MAX_WORDS) {
+          setStatus("Предложение превышает " + MAX_WORDS + " слов.", "error");
+          return;
+        }
+
+        if (link && !/^https?:\/\//i.test(link)) {
+          setStatus("Ссылка должна начинаться с http:// или https://", "error");
+          return;
+        }
+
+        try {
+          var last = parseInt(localStorage.getItem("suggestLastSent") || "0", 10);
+          if (Date.now() - last < COOLDOWN_MS) {
+            setStatus("Подождите минуту перед отправкой следующего предложения.", "error");
+            return;
+          }
+        } catch (e) {}
+
+        /* Название = суть, затем сообщение, в конце позывной */
+        var description = text;
+        if (link) description += "\n\n**Документ:** " + link;
+        description += "\n\n**Позывной:** " + callsign;
+
+        var payload = {
+          username: "Предложения 314",
+          allowed_mentions: { parse: [] },
+          embeds: [{
+            title: topic.slice(0, 256),
+            description: description.slice(0, 4000),
+            color: 0xd46820,
+            timestamp: new Date().toISOString()
+          }]
+        };
+
+        sendBtn.disabled = true;
+        setStatus("Отправка…");
+
+        fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          setStatus("Предложение отправлено. Спасибо!", "ok");
+          try { localStorage.setItem("suggestLastSent", String(Date.now())); } catch (e) {}
+          fCallsign.value = fTopic.value = fText.value = fLink.value = "";
+          counter.textContent = "0 / " + MAX_WORDS + " слов";
+          setTimeout(function () { closeModal(); setStatus(""); }, 1800);
+        })
+        .catch(function () {
+          setStatus("Не удалось отправить. Попробуйте позже.", "error");
+        })
+        .finally(function () {
+          sendBtn.disabled = false;
+        });
+
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
